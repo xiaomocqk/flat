@@ -1,9 +1,5 @@
-import { h, flat, setState } from '../src';
+import { h, app, setState } from '../src';
 let lines = [];
-
-// for (let i = 0; i < 1000; i++) {
-//   line.push(i+1)
-// }
 
 let state = {
   name: 'flat',
@@ -94,7 +90,7 @@ let view = (state, actions) => (
 
 const container = document.getElementById('app');
 
-flat({
+app({
   state,
   view,
   actions,

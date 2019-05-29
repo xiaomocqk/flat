@@ -37,7 +37,7 @@ export function h(nodeName, attributes, ...children){
   };
 }
 
-export function flat({state, view, actions, container}) {
+export function app({state, view, actions, container}) {
   let oldNode;
 
   container.appendChild(
@@ -201,7 +201,4 @@ export function flat({state, view, actions, container}) {
 
     return node;
   }
-}
-
-export function useState(value){
 }
