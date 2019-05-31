@@ -1,10 +1,10 @@
-import { h, app, setState } from '../src';
+import { h, flat, setState } from '../src';
 let lines = [];
 
 let state = {
   name: 'flat',
   show: true,
-  count: 0,
+  count: 1,
   border: false,
   text: 4455,
   arr: [0,1,2,3,4,5,6,7,8,9],
@@ -69,6 +69,7 @@ let view = (state, actions) => (
       onclick={() => actions.border()}
     >添加border</button>
     <div>
+      <input value={state.count} oninput={e => setState({count: +e.target.value})} />
       <button onclick={() => actions.calc(-1)}>-</button>
       <span style="font-size:40px;padding: 0 10px;color: lightblue">{state.count}</span>
       <button onclick={() => actions.calc(+1)}>+</button>
@@ -90,7 +91,7 @@ let view = (state, actions) => (
 
 const container = document.getElementById('app');
 
-app({
+flat({
   state,
   view,
   actions,

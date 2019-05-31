@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <script src="../dist/flat.min.js"></script>
+  <script type="text/babel">
+    //@jsx flat.h
+
+    var setState = flat({
+      state: {
+        value: 1
+      },
+      actions: {
+        change(state){
+          setState({value: state.value + 1})
+        }
+      },
+      view: (state, actions) => (
+        <main>
+          <h1>{state.value}</h1>
+          <input value={state.value} oninput={(e) => setState({value: +e.target.value})} />
+          <br/>
+          <button onclick={() => actions.change(state)}>+1</button>
+        </main>
+      ),
+      container: document.getElementById('app')
+    })
+  </script>
+</body>
+</html>

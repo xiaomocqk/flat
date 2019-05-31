@@ -4,11 +4,11 @@ import commonjs from 'rollup-plugin-commonjs';            // 将非ES6语法的�
 import { uglify } from 'rollup-plugin-uglify';                // 压缩包
 
 export default {
-  input: 'src/index.js',
+  input: 'index.js',
   output: { 
     file: 'dist/flat.min.js',
     format: 'iife',
-    name: 'flat',               // 打包后的全局变量，如浏览器端 window.flat
+    // name: 'flat',               // 打包后的全局变量，如浏览器端 window.flat
   },
   plugins: [
     nodeResolve(),
