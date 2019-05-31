@@ -14,7 +14,7 @@ npm run dev
 
 以`example/index.js`为例:
 ```
-import { flat, setState, h } from '../index';
+import { flat, setState, h } from '../src/index';
 
 // state必须是一个对象
 let state = {
