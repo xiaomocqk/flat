@@ -203,27 +203,24 @@ export function flat({state, view, actions, container}) {
     return node;
   }
 }
+// function useState(value) {
+//   let i = 0;
+//   function setValue(obj) {
+//     for (let key in obj) {
+//       state[key] = obj[key];
+//     }
+//     console.log('oldNode === ', oldNode);
+//     oldNode = patch(container, container.children[0], oldNode, resolveNode(view));
+//     console.log('newNode === ', oldNode);
+//     return state;
+//   }
 
-// function useState() {
-  // var i = 0;
-  // useState = function(value){
-  //   function setValue(obj) {
-  //     for (let key in obj) {
-  //       state[key] = obj[key];
-  //     }
-  //     console.log('oldNode === ', oldNode);
-  //     oldNode = patch(container, container.children[0], oldNode, resolveNode(view));
-  //     console.log('newNode === ', oldNode);
-  //     return state;
-  //   }
+//   let stateName = `_state${i}`;
+//   let actionName = `_action${i}`;
 
-  //   let stateName = `_state${i}`;
-  //   let actionName = `_action${i}`;
+//   state[stateName] = value;
+//   actions[actionName] = setValue;
+//   i++;
 
-  //   state[stateName] = value;
-  //   actions[actionName] = setValue;
-  //   i++;
-  
-  //   return [value, setValue];
-  // };
+//   return [value, setValue];
 // }

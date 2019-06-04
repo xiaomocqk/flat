@@ -7,8 +7,7 @@ export default {
   input: 'index.js',
   output: { 
     file: 'dist/flat.min.js',
-    format: 'iife',
-    // name: 'flat',               // 打包后的全局变量，如浏览器端 window.flat
+    format: 'iife'
   },
   plugins: [
     nodeResolve(),
@@ -16,6 +15,11 @@ export default {
       exclude: '**/node_modules/**'
     }),
     commonjs(),
-    uglify()
+    uglify({
+      sourcemap: false,
+      compress: {
+        drop_console: true
+      }
+    })
   ]
 };

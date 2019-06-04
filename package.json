@@ -1,7 +1,7 @@
 {
-  "name": "my-miniapp",
+  "name": "flat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Flat is a micro MVVM library",
   "main": "index.js",
   "scripts": {
     "dev": "parcel example/index.html",

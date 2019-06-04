@@ -1,14 +1,18 @@
 # flat
 
 #### 介绍
-flat.js是一个小巧的mvvm库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb
-* rollop的版本应不低于1.12.0
+flat是一个小巧的mvvm库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb.
+
+推荐使用jsx语法, 如果你熟悉React, 那么flat对你来说会非常熟悉.
+
+另外推荐一个优秀的开源项目[hyperapp](https://github.com/jorgebucaran/hyperapp), flat很多地方是借鉴于它
+>* rollop的版本应不低于1.12.0
 
 #### 使用说明
 
 #####1. 启动
 
-(1) 方式一(推荐)
+#####(1) 方式一(推荐)
 ```
 npm run dev
 ```
