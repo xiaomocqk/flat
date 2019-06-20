@@ -1,4 +1,4 @@
-import { h, flat, setState } from '../src';
+import { h, flat, setState, useState } from '../src';
 let lines = [];
 
 let state = {
@@ -48,13 +48,9 @@ let actions = {
 
 let view = (state, actions) => (
   <div style={state.border ? 'border: 1px solid #333' : ''}>
-    {
-      state.show ? <span>这是一段待删除的段落。</span> : null
-    }
+    { state.show ? <span>这是一段待删除的段落。</span> : null }
     <button onclick={() => actions.delete()}>{state.show ? '删除段落' : '恢复段落'}</button>
-    <h1 class="yellow" style={{color: 'pink'}}>
-      {state.name}
-    </h1>
+    <h1 class="yellow" style={{color: 'pink'}}>{state.name}</h1>
     <input
       type="text"
       placeholder="请输入名称"
@@ -67,7 +63,9 @@ let view = (state, actions) => (
     <button
       style="display:block;margin: 10px 0;"
       onclick={() => actions.border()}
-    >添加border</button>
+    >
+      添加border
+    </button>
     <div>
       <input value={state.count} oninput={e => setState({count: +e.target.value})} />
       <button onclick={() => actions.calc(-1)}>-</button>
@@ -79,11 +77,12 @@ let view = (state, actions) => (
       <br />
       <button onclick={actions.addLine()}>新增行</button>
     </div>
-    {
-      state.arr.map(item => <div>{item}</div>)
-    }
-    {
-      state.lines.map((line, i) => line == null ? '' : <p onclick={e=> actions.deleteLine(i)} style="cursor: pointer">这是添加的第{i+1}行, 点击可删除</p>)
+    { state.arr.map(item => <div>{item}</div>) }
+    { 
+      state.lines.map((line, i) =>
+        line == null
+          ? null
+          : <p onclick={e=> actions.deleteLine(i)} style="cursor: pointer">这是添加的第{i+1}行, 点击可删除</p>)
     }
     <img src="https://estatic.seeyouyima.com/tools-node.seeyouyima.com/movement-icon-50e67e123b808a6a6189f0cef8df59a5.png" />
   </div>

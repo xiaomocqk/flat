@@ -11,8 +11,6 @@ let isArray = Array.isArray;
 
 export let setState;
 
-// export let useState;
-
 export function h(nodeName, attributes, ...children){
   let rest = [];
 
@@ -41,7 +39,6 @@ export function h(nodeName, attributes, ...children){
 
 export function flat({state, view, actions, container}) {
   let oldNode;
-  container = typeof container === 'string' ? document.querySelector(container) : container;
 
   container.appendChild(
     createElement(oldNode = resolveNode(view))
@@ -179,7 +176,7 @@ export function flat({state, view, actions, container}) {
     }
     else if (oldNode.nodeName !== node.nodeName) {
       if (element === undefined) {
-        parent.appendChild(createElement(resolveNode(node)));
+        parent.appendChild(createElement(node));
       } else {
         // object
         removeElement(parent, element, oldNode, node);
@@ -203,24 +200,3 @@ export function flat({state, view, actions, container}) {
     return node;
   }
 }
-// function useState(value) {
-//   let i = 0;
-//   function setValue(obj) {
-//     for (let key in obj) {
-//       state[key] = obj[key];
-//     }
-//     console.log('oldNode === ', oldNode);
-//     oldNode = patch(container, container.children[0], oldNode, resolveNode(view));
-//     console.log('newNode === ', oldNode);
-//     return state;
-//   }
-
-//   let stateName = `_state${i}`;
-//   let actionName = `_action${i}`;
-
-//   state[stateName] = value;
-//   actions[actionName] = setValue;
-//   i++;
-
-//   return [value, setValue];
-// }
