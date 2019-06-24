@@ -1,7 +1,7 @@
 # flat
 
 #### 介绍
-flat是一个小巧的mvvm库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb.
+flat是一个小巧的function-api库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb.
 
 推荐使用jsx语法, 如果你熟悉React, 那么flat对你来说会非常熟悉.
 
