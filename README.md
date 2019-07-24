@@ -43,12 +43,7 @@ let view = (state, actions) => (
 
 let container = document.getElementById('app');
 
-flat({
-  state,
-  actions,
-  view,
-  container
-})
+flat({ state, actions, view, container })
 ```
 
 #### (2)启动方式二(浏览器环境)
