@@ -3,10 +3,10 @@
 #### 介绍
 flat是一个小巧的function-api库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb.
 
-推荐使用jsx语法, 如果你熟悉React, 那么flat对你来说会非常熟悉.
-
 另外推荐一个优秀的开源项目[hyperapp](https://github.com/jorgebucaran/hyperapp), flat很多地方是借鉴于它
 >* rollop的版本应不低于1.12.0
+
+不同点在于diff的过程中, [hyperapp](https://github.com/jorgebucaran/hyperapp)是采用真实DOM与虚拟DOM的比较, 而flat转而使用两棵新旧虚拟DOM树进行比较
 
 ### 使用说明
 
