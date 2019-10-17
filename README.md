@@ -3,87 +3,48 @@
 #### 介绍
 flat是一个小巧的function-api库, 基于virtual-DOM/diff, 只有200行代码, 压缩后仅2kb.
 
-推荐使用jsx语法, 如果你熟悉React, 那么flat对你来说会非常熟悉.
+推荐使用jsx语法, flat使用h函数生成虚拟DOM
 
 另外推荐一个优秀的开源项目[hyperapp](https://github.com/jorgebucaran/hyperapp), flat很多地方是借鉴于它
 >* rollop的版本应不低于1.12.0
 
 ### 使用说明
 
-#### 1. 启动
+#### 1. 安装
+```
+npm install git+https://github.com/xiaomocqk/flat.git
+```
 
-#### (1) 启动方式一(推荐)
+#### 2. 启动
 ```
 npm run dev
 ```
 
 以`example/index.js`为例:
 ```
-import { flat, setState, h } from '../src/index';
+import flat from 'flat';
 
-// state必须是一个对象
-let state = {
-  value: 1
-};
+let state = { count: 1 };
 
-let actions = {
-  setValue(state){
-    setState({
-      value: state.value + 1
-    })
-  }
-};
-
-let view = (state, actions) => (
-  <main>
-    <h1>{state.value}</h1>
-    <button onclick={() => actions.setValue(state)}>+1</button>
-  </main>
+let view = ({state, mutate}) => (
+  <div>
+    <h1>{state.count}</h1>
+    <input value={state.count} oninput={e => mutate({count: +e.target.value})} />
+    <br />
+    <button onclick={() => mutate({count: state.count - 1})}>Increase</button>
+    <br />
+    <button onclick={() => mutate({count: state.count + 1})}>Decrease</button>
+  </div>
 );
 
 let container = document.getElementById('app');
 
-flat({
-  state,
-  actions,
-  view,
-  container
-})
-```
+flat(state, view, container);
 
-#### (2)启动方式二(浏览器环境)
-查看 `example/browser.html`, 并直接在浏览器打开. 值得注意的是 `setState` 方法应该是 `flat` 函数的运行返回值, 因为`flat` 函数执行后, 内部状态应是一个独立的作用域, `setState` 将可以直接访问其内部状态.
 ```
-<body>
-  <div id="app"></div>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-  <script src="../dist/flat.min.js"></script>
-  <script type="text/babel">
-    //@jsx flat.h
-
-    var setState = flat({
-      state: {
-        value: 1
-      },
-      actions: {
-        change(state){
-          setState({value: state.value + 1})
-        }
-      },
-      view: (state, actions) => (
-        <main>
-          <h1>{state.value}</h1>
-          <input value={state.value} oninput={(e) => setState({value: +e.target.value})} />
-          <br/>
-          <button onclick={() => actions.change(state)}>+1</button>
-        </main>
-      ),
-      container: document.getElementById('app')
-    })
-  </script>
-</body>
-```
-#### 2. 编译打包
+#### 3. 编译打包
 ```
 npm run build
 ```
+
+注: 如需直接在浏览器端引用, 可参考example/browser.html

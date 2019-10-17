@@ -1,15 +1,6 @@
 
 /* eslint-disable no-empty */
-let merge = function (a, b) {
-  let out = {};
-  for(let key in a) out[key] = a[key];
-  for(let key in b) out[key] = b[key];
-
-  return out;
-};
-let isArray = Array.isArray;
-
-export let setState;
+import { merge, isArray, delay } from './utils';
 
 export function h(nodeName, attributes, ...children){
   let rest = [];
@@ -37,26 +28,16 @@ export function h(nodeName, attributes, ...children){
   };
 }
 
-export function flat({state, view, actions, container}) {
+export default function flat(state, view, container) {
   let oldNode;
 
   container.appendChild(
     createElement(oldNode = resolveNode(view))
   );
 
-  return setState = function(obj) {
-    for (let key in obj) {
-      state[key] = obj[key];
-    }
-    console.log('oldNode === ', oldNode);
-    oldNode = patch(container, container.children[0], oldNode, resolveNode(view));
-    console.log('newNode === ', oldNode);
-    return state;
-  };
-
   function resolveNode(node) {
     return typeof node === 'function'
-      ? node(state, actions)
+      ? node({state, mutate})
       : node == null
         ? ''
         : node;
@@ -193,10 +174,25 @@ export function flat({state, view, actions, container}) {
       updateElement(element, oldNode.attributes, node.attributes);
       
       for (let i = 0; i < _node.children.length; i++) {
-        patch(element, element.childNodes[i], oldNode.children[i], node.children[i]);
+        // patch(element, element.childNodes[i], oldNode.children[i], node.children[i]);
+        delay(
+          () => patch(element, element.childNodes[i], oldNode.children[i], node.children[i])
+        );
       }
     }
 
     return node;
+  }
+
+  function mutate(obj) {
+    for (let key in obj) {
+      state[key] = obj[key];
+    }
+    console.log('oldNode === ', oldNode);
+    delay(
+      () => oldNode = patch(container, container.children[0], oldNode, resolveNode(view))
+    );
+    console.log('newNode === ', oldNode);
+    return state;
   }
 }

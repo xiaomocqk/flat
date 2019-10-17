@@ -5,7 +5,8 @@ import { uglify } from 'rollup-plugin-uglify';                // 压缩包
 
 export default {
   input: 'index.js',
-  output: { 
+  output: {
+    name: 'flat',
     file: 'dist/flat.min.js',
     format: 'iife'
   },

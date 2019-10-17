@@ -13,25 +13,19 @@
   <script type="text/babel">
     //@jsx flat.h
 
-    var setState = flat({
-      state: {
-        value: 1
-      },
-      actions: {
-        change(state){
-          setState({value: state.value + 1})
-        }
-      },
-      view: (state, actions) => (
-        <main>
-          <h1>{state.value}</h1>
-          <input value={state.value} oninput={e => setState({value: +e.target.value})} />
-          <br/>
-          <button onclick={() => actions.change(state)}>+1</button>
-        </main>
-      ),
-      container: document.getElementById('app')
-    })
+    var state = { value: 1 };
+    var view = ({state, mutate}) => (
+      <main>
+        <h1>{state.value}</h1>
+        <input value={state.value} oninput={e => mutate({value: +e.target.value})} />
+        <br/>
+        <button onclick={() => mutate({value: state.value + 1})}>Increase</button>
+        <br />
+        <button onclick={() => mutate({value: state.value - 1})}>Decrease</button>
+      </main>
+    );
+
+    flat(state, view, document.getElementById('app'));
   </script>
 </body>
 </html>

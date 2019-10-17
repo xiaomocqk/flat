@@ -6,7 +6,7 @@
     [
       "@babel/transform-react-jsx",
       {
-        "pragma": "h"
+        "pragma": "flat.h"
       }
     ]
   ]
